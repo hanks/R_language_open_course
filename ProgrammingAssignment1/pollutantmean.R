@@ -20,7 +20,8 @@ pollutantmean <- function(directory, pollutant, id = 1:332) {
         csv_file_name <- paste(directory, "/", file_name, ".csv", sep="")
         mydata <- read.csv(csv_file_name)
 
-        ## remove NA data, count mean, and append to result list
+        ## convert data frame to vector
+        ## append to result list    
         avector <- mydata[, pollutant]
         result_list <- c(result_list, avector)
     }
