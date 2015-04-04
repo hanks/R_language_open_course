@@ -22,17 +22,10 @@ complete <- function(directory, ids = 1:332) {
         csv_file_name <- paste(directory, "/", file_name, ".csv", sep="")
         mydata <- read.csv(csv_file_name)
 
-        completes <- 0
-        for (j in 1:nrow(mydata)) {
-            row <- mydata[j, ]
-
-            if (!is.na(row['sulfate']) && !is.na('nitrate')) {
-                completes <- completes + 1
-            }
-        }
-
+        completes <- complete.cases(mydata)
+        
         id <- c(id, i)
-        nobs <- c(nobs, completes)
+        nobs <- c(nobs, sum(completes))
     }
 
     result <- data.frame(id, nobs)
